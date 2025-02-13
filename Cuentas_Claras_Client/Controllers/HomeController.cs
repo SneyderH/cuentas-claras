@@ -10,13 +10,13 @@ namespace Cuentas_Claras_Client.Controllers
     {
         private readonly ApiController _apiController;
         private readonly ConnectionDB _context;
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApiController apiController, ConnectionDB context)
+        public HomeController(ApiController apiController, ConnectionDB context)
         {
             _apiController = apiController;
             _context = context;
-            _logger = logger;
+            //_logger = logger;
         }
 
         [HttpGet]
@@ -30,12 +30,12 @@ namespace Cuentas_Claras_Client.Controllers
         {
             var apiResponse = await _apiController.GetTokenAsync(username, password);
 
-            if (apiResponse != null && apiResponse.Success)
+            if (apiResponse != null)
             {
                 var user = new Users
                 {
                     Username = username,
-                    Password = apiResponse.Token
+                    Password = apiResponse.Password
                 };
 
                 _context.users.Add(user);

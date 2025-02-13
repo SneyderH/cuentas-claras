@@ -11,17 +11,15 @@ namespace Cuentas_Claras_Client.Controllers
         private readonly IConfiguration _configuration;
         private readonly ConnectionDB _context;
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl;
 
-        public ApiController(IConfiguration configuration, ConnectionDB context, IHttpClientFactory httpClientFactory, string baseUrl)
+        public ApiController(IConfiguration configuration, ConnectionDB context, IHttpClientFactory httpClientFactory)
         {
             _configuration = configuration;
             _context = context;
             _httpClient = httpClientFactory.CreateClient("ApiJwt");
-            _baseUrl = configuration["ExternalApi:BaseUrl"];
         }
 
-        public async Task<ApiResponse> GetTokenAsync(string username, string password)
+        public async Task<Users> GetTokenAsync(string username, string password)
         {
             var request = new
             {
@@ -33,14 +31,21 @@ namespace Cuentas_Claras_Client.Controllers
 
             try
             {
-                var response = await _httpClient.PostAsync($"{_baseUrl}/register", content);
+                var response = await _httpClient.PostAsync("register", content);
                 response.EnsureSuccessStatusCode();
 
                 var responseData = await response.Content.ReadAsStringAsync();
+                var usersDto = JsonSerializer.Deserialize<UsersDto>(responseData);
 
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseData);
+                var user = new Users
+                {
+                    Username = usersDto.Username,
+                    Password = usersDto.PasswordHash
+                };
 
-                return apiResponse;
+                //var apiResponse = JsonSerializer.Deserialize<Users>(responseData);
+
+                return user;
 
             }
             catch (HttpRequestException ex)
@@ -57,8 +62,4 @@ namespace Cuentas_Claras_Client.Controllers
     }
 }
 
-public class ApiResponse
-{
-    public string username { get; set; }
-    public string password { get; set; }
-}
+

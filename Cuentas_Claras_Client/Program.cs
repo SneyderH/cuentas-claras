@@ -1,5 +1,6 @@
 using Cuentas_Claras_Client.Connection;
 using Cuentas_Claras_Client.Controllers;
+using Cuentas_Claras_Client.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -11,15 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ConnectionDB>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<ApiController>();
+
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient("ApiJwt", client =>
 {
     client.BaseAddress = new Uri("http://sneydevsapijwt.somee.com/api/Auth/");
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
-
-builder.Services.AddHttpClient<ApiController>();
 
 
 builder.Services.AddAuthentication(options =>

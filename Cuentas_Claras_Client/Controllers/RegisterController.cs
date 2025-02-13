@@ -17,7 +17,7 @@ namespace Cuentas_Claras_Client.Controllers
 
             if (token != null)
             {
-                HttpContext.Session.SetString("Token", token);
+                //HttpContext.Session.SetString("Token", token);
                 return RedirectToAction("Index", "Home");
             }
 
