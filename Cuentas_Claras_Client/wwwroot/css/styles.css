@@ -1,0 +1,68 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #383838;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo img {
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+    .logo img:hover {
+        transform: scale(1.1);
+    }
+
+/* Lista de enlaces */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+    .nav-links li {
+        margin-left: 20px;
+    }
+
+/* Estilos de los ítems del navbar */
+.nav-item {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .nav-item:hover {
+        background-color: #34495e;
+        color: #1abc9c;
+    }
+
+/* Efecto especial para el botón de Iniciar Sesión */
+.nav-links li:last-child .nav-item {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+    .nav-links li:last-child .nav-item:hover {
+        background-color: #16a085;
+    }
