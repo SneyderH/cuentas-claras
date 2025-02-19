@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #6E6E6E;
 }
 
 /* Navbar */
@@ -15,8 +15,8 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #383838;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px;
+    box-shadow: 0 5px 12px #383838;
 }
 
 /* Logo */
@@ -47,22 +47,167 @@ body {
     color: #ecf0f1;
     font-size: 16px;
     font-weight: 500;
+    border-radius: 5px;
     padding: 8px 12px;
-    border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
     .nav-item:hover {
-        background-color: #34495e;
-        color: #1abc9c;
+        color: #BAFF39;
     }
 
 /* Efecto especial para el botón de Iniciar Sesión */
 .nav-links li:last-child .nav-item {
-    background-color: #1abc9c;
-    color: #fff;
+    background-color: #BAFF39;
+    color: #000000;
 }
 
     .nav-links li:last-child .nav-item:hover {
-        background-color: #16a085;
+        background-color: #fff;
     }
+
+
+/*Estilos para el formulario de inicio de sesión (LOGIN)*/
+
+.login-container {
+    background: #383838;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box h2 {
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #BAFF39;
+        background-color: #6E6E6E;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #BAFF39;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    button:hover {
+        background: #fff;
+    }
+
+.register-link {
+    text-align: center;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+    .register-link a {
+        color: #BAFF39;
+        text-decoration: none;
+    }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+
+/*Estilos para el formulario de registro (REGISTER)*/
+
+.register-container {
+    background: #383838;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-box h2 {
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #BAFF39;
+        background-color: #6E6E6E;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #BAFF39;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    button:hover {
+        background: #fff;
+    }
+
+.register-link {
+    text-align: center;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+    .register-link a {
+        color: #BAFF39;
+        text-decoration: none;
+    }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }

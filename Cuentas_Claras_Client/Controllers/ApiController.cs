@@ -3,6 +3,7 @@ using Cuentas_Claras_Client.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
+using Azure.Core;
 
 namespace Cuentas_Claras_Client.Controllers
 {
@@ -52,13 +53,39 @@ namespace Cuentas_Claras_Client.Controllers
             {
                 Console.WriteLine($"Error en la solicitud HTTP: {ex.Message}");
                 return null;
-            } 
+            }
             catch (JsonException ex)
             {
                 Console.WriteLine($"Error al deserializar la respuesta: {ex.Message}");
                 return null;
             }
         }
+
+        //public async Task<string> TokenLoginAsync(string username, string password)
+        //{
+        //    var loginRequest = new { username, password };
+        //    var json = JsonSerializer.Serialize(loginRequest);
+        //    Console.WriteLine(json);
+        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //    var response = await _httpClient.PostAsync("login", content);
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var responserJson = await response.Content.ReadAsStringAsync();
+        //        var responseData = JsonSerializer.Deserialize<LoginResponse>(responserJson);
+        //        return responseData.Token;
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Error en la solicitud: " + response.StatusCode);
+        //    }
+        //}
+
+        //public class LoginResponse
+        //{
+        //    public string Token { get; set; }
+        //}
     }
 }
 

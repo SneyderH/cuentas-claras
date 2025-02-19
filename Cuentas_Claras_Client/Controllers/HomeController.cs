@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Cuentas_Claras_Client.Connection;
 using Cuentas_Claras_Client.Models;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cuentas_Claras_Client.Controllers
@@ -19,6 +20,42 @@ namespace Cuentas_Claras_Client.Controllers
             //_logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(Users request)
+        {
+            var user = _context.users.SingleOrDefault(u => u.Username == request.Username);
+
+            try
+            {
+                if (user == null)
+                {
+                    return BadRequest("Usuario no encontrado");
+                }
+
+                if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+                {
+                    return BadRequest("Contraseña incorrecta");
+                }
+
+                //var tokenTask = _apiController.TokenLoginAsync(request.Username, request.Password);
+
+                //tokenTask.Wait();
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return RedirectToAction("Login", "Home");
+        }
+
+        #region REGISTER
         [HttpGet]
         public IActionResult Register()
         {
@@ -41,11 +78,12 @@ namespace Cuentas_Claras_Client.Controllers
                 _context.users.Add(user);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
             ViewBag.Error = "Error al registrar usuario";
             return View();
         }
+        #endregion
 
         public IActionResult Index()
         {

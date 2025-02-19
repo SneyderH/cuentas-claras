@@ -12,11 +12,13 @@
         <div class="logo">
             <a href="#"><img src="" alt="Cuentas Claras" /></a>
         </div>
-
+    
         <ul class="nav-links">
             <li><a href="#" class="nav-item">Inicio</a></li>
             <li><a href="#" class="nav-item">Sobre Nosotros</a></li>
-            <li><a href="#" class="nav-item">Iniciar Sesión</a></li>
+            <div>
+                <li><a href="@Url.Action("Login", "Home")" class="nav-item login">Iniciar Sesión</a></li>
+            </div>
         </ul>
     </nav>
 
