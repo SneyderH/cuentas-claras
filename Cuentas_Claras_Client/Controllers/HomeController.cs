@@ -1,9 +1,14 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Cuentas_Claras_Client.Connection;
 using Cuentas_Claras_Client.Models;
-using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Cuentas_Claras_Client.Controllers
 {
@@ -11,22 +16,27 @@ namespace Cuentas_Claras_Client.Controllers
     {
         private readonly ApiController _apiController;
         private readonly ConnectionDB _context;
+        private readonly IConfiguration _configuration;
         //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ApiController apiController, ConnectionDB context)
+
+        public HomeController(ApiController apiController, ConnectionDB context, IConfiguration configuration)
         {
             _apiController = apiController;
             _context = context;
+            _configuration = configuration;
             //_logger = logger;
         }
 
-        [HttpGet]
+        #region LOGIN
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login(Users request)
         {
             var user = _context.users.SingleOrDefault(u => u.Username == request.Username);
@@ -43,20 +53,71 @@ namespace Cuentas_Claras_Client.Controllers
                     return BadRequest("Contraseña incorrecta");
                 }
 
-                //var tokenTask = _apiController.TokenLoginAsync(request.Username, request.Password);
+                var tokenTask = _apiController.TokenLogin(request.Username, request.Password);
+                tokenTask.Wait();
 
-                //tokenTask.Wait();
+                var token = tokenTask.Result;
+                var principal = ValidateTokenAndCreatePrincipal(token);
+
+                if (principal == null)
+                {
+                    return BadRequest("Token no válido");
+                }
+
+                var authProperties = new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTime.UtcNow.AddDays(1),
+                    IsPersistent = true
+                };
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties).Wait();
+
+                return RedirectToAction("Principal", "Home");
             } 
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+                return RedirectToAction("Login", "Home");
             }
+        }
+        #endregion
 
-            return RedirectToAction("Login", "Home");
+
+        private ClaimsPrincipal ValidateTokenAndCreatePrincipal(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            try
+            {
+                if (!tokenHandler.CanReadToken(token))
+                {
+                    Console.WriteLine("El token no es un JWT válido");
+                    return null;
+                }
+
+                var key = Encoding.ASCII.GetBytes(_configuration.GetSection("Jwt:Key").Value!);
+
+                var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                }, out var validatedToken);
+
+                return principal;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al validar el token: {ex.Message}");
+                return null;
+            }
         }
 
         #region REGISTER
-        [HttpGet]
+            [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -84,6 +145,25 @@ namespace Cuentas_Claras_Client.Controllers
             return View();
         }
         #endregion
+
+
+        [Authorize]
+        public IActionResult Principal()
+        {
+            //Console.WriteLine("Usuario autenticado: " + User.Identity.Name);
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
+            return RedirectToAction("Login", "Home");
+        }
+
+        //public IActionResult AccessDenied()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Index()
         {
