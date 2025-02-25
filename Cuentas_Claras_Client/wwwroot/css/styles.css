@@ -21,7 +21,9 @@ body {
 
 /* Logo */
 .logo img {
-    height: 40px;
+    margin-left: 20px;
+    height: 30px;
+    padding: 0;
     transition: transform 0.3s ease;
 }
 

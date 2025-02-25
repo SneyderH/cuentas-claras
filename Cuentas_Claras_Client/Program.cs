@@ -24,33 +24,10 @@ builder.Services.AddHttpClient("ApiJwt", client =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        //options.Cookie.Name = "authToken";
         options.LoginPath = "/Home/Login";
-        //options.LogoutPath = "/Home/Logout";
         options.AccessDeniedPath = "/Shared/Error";
         options.ExpireTimeSpan = TimeSpan.FromDays(1);
-        //options.SlidingExpiration = true;
     });
-
-
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-//}).AddJwtBearer(options =>
-//{
-//    options.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = false,
-//        ValidateAudience = false,
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
-//        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-//        ValidAudience = builder.Configuration["Jwt:Audience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-//    };
-//});
 
 
 var app = builder.Build();

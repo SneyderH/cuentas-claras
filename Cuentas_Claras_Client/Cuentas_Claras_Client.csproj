@@ -24,4 +24,8 @@
     <Folder Include="Views\Access\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\favicon.ico" />
+  </ItemGroup>
+
 </Project>
