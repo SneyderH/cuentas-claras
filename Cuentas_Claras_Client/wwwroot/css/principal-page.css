@@ -80,6 +80,10 @@ nav:hover {
     transition: all 0.5s ease;
 }
 
+.profile {
+    position: absolute;
+}
+
 .logout {
     position: absolute;
     bottom: 0;

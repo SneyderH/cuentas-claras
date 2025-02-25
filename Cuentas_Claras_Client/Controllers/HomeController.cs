@@ -32,7 +32,7 @@ namespace Cuentas_Claras_Client.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            return View("~/Views/Home/Login/Login.cshtml");
         }
 
         [HttpPost]
@@ -120,7 +120,7 @@ namespace Cuentas_Claras_Client.Controllers
             [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return View("~/Views/Home/Login/Register.cshtml");
         }
 
         [HttpPost]
@@ -151,13 +151,13 @@ namespace Cuentas_Claras_Client.Controllers
         public IActionResult Principal()
         {
             //Console.WriteLine("Usuario autenticado: " + User.Identity.Name);
-            return View();
+            return View("~/Views/Home/Content/Principal.cshtml");
         }
 
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         //public IActionResult AccessDenied()
