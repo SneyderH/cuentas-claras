@@ -76,6 +76,7 @@ namespace Cuentas_Claras_Client.Controllers
             } 
             catch (Exception ex)
             {
+                //Cambiar la alerta de usuario no encontrado *********************************
                 Console.WriteLine($"Error: {ex.Message}");
                 return RedirectToAction("Login", "Home");
             }

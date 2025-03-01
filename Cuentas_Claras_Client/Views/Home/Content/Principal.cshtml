@@ -4,12 +4,93 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/principal-page.css" />
+    <link rel="stylesheet" href="~/css/home/home-page.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <body>
 
-    <h2 style="margin-left: 10%;">Bienvenido, @User.Identity.Name</h2>
+
+    <div class="container-content">
+
+        <h1 class="welcome-user">Bienvenido, @User.Identity.Name</h1>
+
+        <div class="header-container">
+
+            <div class="balance">
+                <h3>Total</h3>
+                <p>$1.000.000</p>
+            </div>
+
+            <div class="recent-record">
+                <table class="record">
+                    <tr>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>$500.000</td>
+                        <td>20/02/2025</td>
+                    </tr>
+
+                    <tr>
+                        <td>$100.000</td>
+                        <td>19/02/2025</td>
+                    </tr>
+
+                    <tr>
+                        <td>$600.000</td>
+                        <td>18/02/2025</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="values-container">
+
+            <div class="earnings">
+                <!-- <h6>Agregar ingresos</h6> -->
+                <button type="submit" class="btn-earnings"> + </button>
+                <div>
+                    <p>Agrega los ingresos que haz obtenido o todo tipo de ganancias para calcular el total de tu dinero.</p>
+                </div>
+            </div>
+
+            <div class="expense">
+                <!-- <h6>Agregar gastos</h6> -->
+                <p>Agrega los gastos que haz tenido o todo tipo de pérdidas para calcular el total de tu dinero.</p>
+                <button type="submit" class="btn-expense"> + </button>
+            </div>
+        </div>
+
+        <div class="detail-footer">
+            <div class="detail-records">
+                <table class="record-detail">
+                    <tr>
+                        <th>Monto</th>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>$500.000</td>
+                        <td>Pago de nómina</td>
+                        <td>20/02/2025</td>
+                    </tr>
+
+                    <tr>
+                        <td>$100.000</td>
+                        <td>Pago de factura</td>
+                        <td>19/02/2025</td>
+                    </tr>
+
+                    <tr>
+                        <td>$600.000</td>
+                        <td>Ingreso de inversión</td>
+                        <td>18/02/2025</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </body>

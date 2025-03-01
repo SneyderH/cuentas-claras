@@ -1,0 +1,244 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* 
+    DISEÑO DE LA PAGINA PRINCIPAL
+*/
+
+.container-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.welcome-user {
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+    margin-left: 4%;
+    margin-top: 50px;
+}
+
+.balance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+    .balance p {
+        color: #BAFF39;
+    }
+
+.recent-record {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    .recent-record p {
+        color: #BAFF39;
+    }
+
+.record {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+    .record th, .record td {
+        /* text-align: left; */
+        padding: 10px;
+    }
+
+        .record th:nth-child(1),
+        .record td:nth-child(1) {
+            text-align: left;
+            /* width: 50%; */
+        }
+
+        .record th:nth-child(2),
+        .record td:nth-child(2) {
+            text-align: right;
+            /* width: 50%; */
+        }
+
+    .record th {
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .record p {
+        color: #BAFF39;
+        font-size: 20px;
+    }
+
+
+
+
+
+.values-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4%;
+    margin-top: 50px;
+    margin-right: 5%;
+}
+
+.earnings h6 {
+    margin-left: 20px;
+}
+
+.earnings {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 200px;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.balance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.earnings p {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn-earnings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 120px;
+    background: #BAFF39;
+    border-radius: 20px;
+    font-size: 80px;
+    color: #383838;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+    .btn-earnings:hover {
+        background: #BAFF39;
+        color: #383838;
+    }
+
+.expense {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    height: 200px;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+    /* .expense h6 {
+    margin-left: 20px;
+} */
+
+    .expense p {
+        font-size: 15px;
+        margin-left: 15px;
+    }
+
+.btn-expense {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 120px;
+    background: #BAFF39;
+    border-radius: 20px;
+    font-size: 80px;
+    color: #383838;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+
+
+
+
+.detail-footer {
+    display: flex;
+    margin-left: 4%;
+    margin-top: 50px;
+    margin-right: 5%;
+}
+
+.detail-records {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: #fff;
+    background: #383838;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.record-detail {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+    .record-detail th, .record-detail td {
+        /* text-align: left; */
+        padding: 10px;
+    }
+
+        .record-detail th:nth-child(1),
+        .record-detail td:nth-child(1) {
+            text-align: center;
+        }
+
+        .record-detail th:nth-child(2),
+        .record-detail td:nth-child(2) {
+            text-align: center;
+        }
+
+        .record-detail th:nth-child(3),
+        .record-detail td:nth-child(3) {
+            text-align: center;
+        }
