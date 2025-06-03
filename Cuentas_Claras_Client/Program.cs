@@ -2,6 +2,7 @@ using Cuentas_Claras_Client.Connection;
 using Cuentas_Claras_Client.Controllers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ConnectionDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//builder.Services.AddHttpClient("IgnoreSSL")
+//    .ConfigurePrimaryHttpMessageHandler(() =>
+//    {
+//        var handler = new HttpClientHandler();
+//        handler.ServerCertificateCustomValidationCallback = 
+//            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+//        return handler;
+//    });
+
 builder.Services.AddTransient<ApiController>();
 
 builder.Services.AddControllersWithViews();
@@ -19,6 +29,13 @@ builder.Services.AddHttpClient("ApiJwt", client =>
 {
     client.BaseAddress = new Uri("http://sneydevsapijwt.somee.com/api/Auth/");
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+    return handler;
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
